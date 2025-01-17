@@ -1,0 +1,179 @@
+html, body {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    background: linear-gradient(135deg, #8366D6, #5F4BFF, #7A5BC9, #4A3C9F);
+    background-size: 300% 300%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    animation: gradient-flow 15s ease infinite;
+    font-family: 'Roboto', sans-serif;
+    color: #FFF;
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 50% 100%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 0%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+#start-screen {
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: var(--background-color, #FFF);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+    #start-screen {
+        --background-color: #1C1C1E;
+        color: #EAEAEA;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #start-screen {
+        --background-color: #FFFFFF;
+        color: #1C1C1E;
+        background-color: var(--background-color);
+    }
+}
+
+#watermark {
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+h1 {
+    font-size: 32px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#start-button {
+    background-color: #6A4CF5;
+    color: #FFF;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.4s ease;
+}
+
+#start-button:hover {
+    transform: scale(1.1);
+    background-color: #5739D1;
+}
+
+#start-button:active {
+    transform: scale(0.95);
+}
+
+#game-screen {
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-size: 18px;
+}
+
+#game-field {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cell img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+@media (max-width: 768px) {
+    #start-screen {
+        padding: 40px 20px;
+        margin: 20px;
+    }
+    h1 {
+        font-size: 26px;
+    }
+    p {
+        font-size: 16px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+    #start-button {
+        font-size: 16px;
+        padding: 12px 24px;
+        margin-top: 15px;
+    }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease infinite;
+}
