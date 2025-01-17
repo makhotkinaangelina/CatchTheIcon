@@ -45,7 +45,6 @@ class CatchTheIconGame {
                 alert('Время вышло! Вы проиграли.');
                 this.resetGame();
             } else if (this.timeRemaining <= 10) {
-                //this.changeTimerColorAndShake();
                 this.changeUpdateInterval(500);
             }
         }, 1000);
@@ -59,12 +58,6 @@ class CatchTheIconGame {
         }
         this.updateInterval = setInterval(() => this.updateField(), interval);
     }
-
-//    changeTimerColorAndShake() {
-//        if (this.timeRemaining <= 10) {
-//            this.timerElement.classList.add('shake');
-//        }
-//    }
 
     updateField() {
         this.resetGameField();
