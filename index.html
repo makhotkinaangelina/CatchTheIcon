@@ -9,14 +9,15 @@
 </head>
 <body>
     <div id="start-screen">
-        <h1>Catch the icon!</h1>
-        <p>Требуется кликнуть по ячейеке с логотипом 10 раз за отведенное время.</p>
+        <h1 id="game-title">Catch the icon!</h1>
+        <p id="game-description">Требуется кликнуть по ячейке с логотипом 10 раз за отведенное время.</p>
+        <div id="result-message" class="hidden"></div>
         <button id="start-button">Начать игру</button>
         <div id="watermark">Vortex © 2025</div>
     </div>
     <div id="game-screen" class="hidden">
         <div id="header">
-            <div id="score">Словлено: 0</div>
+            <div id="score">0/10</div>
             <div id="timer">Оставшееся время: 30 сек.</div>
         </div>
         <div id="game-field"></div>

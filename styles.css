@@ -2,6 +2,9 @@ html, body {
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 body {
@@ -10,8 +13,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
     animation: gradient-flow 15s ease infinite;
     font-family: 'Roboto', sans-serif;
     color: #FFF;
@@ -112,6 +113,7 @@ p {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 0 10px;
 }
 
 #header {
@@ -164,7 +166,19 @@ p {
         padding: 12px 24px;
         margin-top: 15px;
     }
+
+    #game-field {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .cell {
+        width: 60px;
+        height: 60px;
+        border-width: 1.5px;
+    }
 }
+
 
 @keyframes shake {
     0% { transform: translateX(0); }
@@ -174,6 +188,13 @@ p {
     100% { transform: translateX(5px); }
 }
 
-.shake {
-    animation: shake 0.5s ease infinite;
+#result-message {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
 }
+
+
