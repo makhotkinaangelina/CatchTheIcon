@@ -30,6 +30,7 @@ class CatchTheIconGame {
         try {
             this.startScreen.classList.add('hidden');
             this.gameScreen.classList.remove('hidden');
+            this.gameScreen.classList.remove('hidden');
 
             this.score = 0;
             this.timeRemaining = 30;
@@ -49,8 +50,6 @@ class CatchTheIconGame {
         try {
             this.timer = setInterval(() => {
                 this.timeRemaining--;
-                this.timerElement.textContent = `Оставшееся время: ${this.timeRemaining} сек.`;
-
                 this.adjustIconChangeSpeed();
 
                 if (this.timeRemaining <= 0) {
@@ -81,9 +80,9 @@ class CatchTheIconGame {
     changeUpdateInterval(interval) {
         try {
             if (this.updateInterval) {
-                clearInterval(this.updateInterval);
+                clearInterval(this.updateInterval);  
             }
-            this.updateInterval = setInterval(() => this.updateField(), interval);
+            this.updateInterval = setInterval(() => this.updateField(), interval);  // Устанавливаем новый
         } catch (error) {
             console.error('Ошибка при смене интервала обновления:', error);
         }
@@ -111,7 +110,7 @@ class CatchTheIconGame {
 
             if (this.iconPosition !== -1 && cells[this.iconPosition]) {
                 cells[this.iconPosition].innerHTML = '';
-                cells[this.iconPosition].style.backgroundColor = ''; // Reset any red background
+                cells[this.iconPosition].style.backgroundColor = '';
             }
 
             let randomIndex;
@@ -123,6 +122,7 @@ class CatchTheIconGame {
             this.iconPosition = randomIndex;
 
             if (cells[randomIndex]) {
+                cells[this.iconPosition].style.backgroundColor = '';
                 cells[randomIndex].innerHTML = '<img src="icon.png" alt="icon">';
             } else {
                 throw new Error('Ячейка для обновления не найдена.');
@@ -145,12 +145,13 @@ class CatchTheIconGame {
                     this.resetGame(true);
                 } else {
                     this.updateField();
+                    this.resetUpdateInterval();
                 }
             } else {
                 this.playSound(this.missSound);
                 const cells = this.gameField.querySelectorAll('.cell');
                 if (cells[cellIndex]) {
-                    cells[cellIndex].style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+                    cells[cellIndex].style.backgroundColor = 'rgba(255, 0, 0, 0.7)';
                     setTimeout(() => {
                         cells[cellIndex].style.backgroundColor = '';
                     }, 500);
@@ -163,9 +164,14 @@ class CatchTheIconGame {
         }
     }
 
+    resetUpdateInterval() {
+        // Эта функция сбрасывает таймер обновления поля
+        this.changeUpdateInterval(this.iconChangeSpeed);
+    }
+
     updateScore() {
         try {
-            this.scoreElement.textContent = `${this.score}/10`;
+            this.scoreElement.textContent = `${this.score}`;
         } catch (error) {
             console.error('Ошибка при обновлении счёта:', error);
         }
@@ -218,11 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         const gameField = document.getElementById('game-field');
         const scoreElement = document.getElementById('score');
-        const timerElement = document.getElementById('timer');
+        const timerElement = document.getElementById('timer-text');
         const startButton = document.getElementById('start-button');
         const startScreen = document.getElementById('start-screen');
         const gameScreen = document.getElementById('game-screen');
-
         const game = new CatchTheIconGame(gameField, scoreElement, timerElement, startButton, startScreen, gameScreen);
     } catch (error) {
         console.error('Ошибка при инициализации игры:', error);
