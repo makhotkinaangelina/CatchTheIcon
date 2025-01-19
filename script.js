@@ -23,11 +23,27 @@ class CatchTheIconGame {
         this.catchSound = new Audio('catch.mp3');
         this.missSound = new Audio('miss.mp3');
 
+        this.iconImage = new Image();
+        this.iconImage.src = 'icon.png';
+
         this.startButton.onclick = () => this.startGame();
     }
 
-    startGame() {
+    waitForImageLoad() {
+        return new Promise((resolve, reject) => {
+            if (this.iconImage.complete) {
+                resolve();
+            } else {
+                this.iconImage.onload = () => resolve();
+                this.iconImage.onerror = () => reject('Ошибка при загрузке изображения');
+            }
+        });
+    }
+
+    async startGame() {
         try {
+            await this.waitForImageLoad();
+            
             this.startScreen.classList.add('hidden');
             this.gameScreen.classList.remove('hidden');
             this.gameScreen.classList.remove('hidden');
@@ -80,7 +96,7 @@ class CatchTheIconGame {
     changeUpdateInterval(interval) {
         try {
             if (this.updateInterval) {
-                clearInterval(this.updateInterval);  
+                clearInterval(this.updateInterval);
             }
             this.updateInterval = setInterval(() => this.updateField(), interval);  // Устанавливаем новый
         } catch (error) {
